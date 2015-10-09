@@ -1,0 +1,10 @@
+clc;
+clear;
+load ('fisheriris');
+y=meas(:,1);
+X=[ones(size(y,1),1),meas(:,2:4)];
+regf=@(XTRAIN,ytrain,XTEST)(XTEST*regress(ytrain,XTRAIN));
+cvmse=crossval('mse',X,y,'predfun',regf);
+t=XTRAIN;
+tt=ytrain;
+ttt=XTEST;
